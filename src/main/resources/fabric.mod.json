@@ -1,0 +1,34 @@
+{
+	"schemaVersion": 1,
+	"id": "deckedout",
+	"version": "${version}",
+	"name": "Decked Out",
+	"description": "The Decked Out 2 game with custom dungeon support!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "",
+		"sources": "https://github.com/FamroFexl/DeckedOut"
+	},
+	"license": "MIT",
+	"icon": "assets/deckedout/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.fexl.deckedout.DeckedOut"
+		]
+	},
+	"mixins": [
+		"deckedout.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.14.23",
+		"minecraft": "~1.20",
+		"java": ">=17",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
