@@ -2,7 +2,7 @@ package com.fexl.deckedout.cards;
 
 import java.util.Random;
 
-import com.fexl.deckedout.SpawnType;
+import com.fexl.deckedout.event.EventTypes;
 
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
@@ -25,7 +25,7 @@ public class SuitUp extends Card {
 		
 		//Each clank has a 25% chance of adding another clank for the entire run
 		events.CLANK_EVENT.register(type -> {
-			if(type == SpawnType.Clank.ADD_CLANK) {
+			if(type == EventTypes.Clank.ADD_CLANK) {
 				//25% chance
 				if((new Random()).nextInt(4) == 0) {
 					clank.addClank(1);

@@ -1,6 +1,6 @@
 package com.fexl.deckedout.cards;
 
-import com.fexl.deckedout.SpawnType;
+import com.fexl.deckedout.event.EventTypes;
 
 import net.minecraft.world.InteractionResult;
 
@@ -21,7 +21,7 @@ public class NimbleLooting extends Card {
 		
 		//For every clank blocked, add two treasure until clank increases
 		events.CLANK_EVENT.register((type) -> {
-			if(!(type == SpawnType.Clank.ADD_CLANK) && complete == false) {
+			if(!(type == EventTypes.Clank.ADD_CLANK) && complete == false) {
 				this.addTreasure(2);
 				return InteractionResult.PASS;
 			}

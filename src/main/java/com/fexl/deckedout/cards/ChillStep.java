@@ -19,7 +19,7 @@ public class ChillStep extends Card {
 		//Future sneak cards generate 2 Frost Embers each
 		events.CARD_EVENT.register((card, type) -> {
 			if(card == Cards.CARDS.get(new ResourceLocation("sneak")) && count <= 3) {
-				ember.addEmbers(2);
+				this.addEmbers(2);
 				count += 1;
 			}
 			return InteractionResult.PASS;

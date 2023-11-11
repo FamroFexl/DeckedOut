@@ -1,9 +1,7 @@
 package com.fexl.deckedout.cards;
 
-import com.fexl.deckedout.SpawnType;
-import com.fexl.deckedout.treasure.Artifact;
+import com.fexl.deckedout.event.EventTypes;
 
-import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 
@@ -24,7 +22,7 @@ public class FuzzyBunnySlippers extends Card {
 		boolean artifactObtained = true;
 		
 		//Cards won't grant speed if the artifact has been obtained
-		events.EFFECT_EVENT.register((effect, type) -> {
+		events.EFFECT_EVENT.register((effect) -> {
 			if(effect == MobEffects.MOVEMENT_SPEED && artifactObtained) {
 				return InteractionResult.FAIL;
 			}
@@ -34,7 +32,7 @@ public class FuzzyBunnySlippers extends Card {
 		//Every staircase unlocked blocks 4 Clank.
 		events.LEVEL_EVENT.register((level, type) -> {
 			//Only activate once per level
-			if(type.equals(SpawnType.Level.PLAYER_LEVEL_LOWER)&& level > maxLevel) {
+			if(type.equals(EventTypes.Level.PLAYER_LEVEL_LOWER)&& level > maxLevel) {
 				maxLevel += 1;
 				clank.addClankBlock(4);
 			}

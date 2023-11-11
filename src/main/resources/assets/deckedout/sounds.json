@@ -1,0 +1,36 @@
+{
+	"deckedout.ambient.generic": {
+		"sounds": [
+		
+		]
+	}
+	"deckedout.card.stumble": { "sounds": [ "card/stumble" ] },
+	
+	"deckedout.card.pay_to_win": { "sounds": [ "card/pay_to_win" ] },
+	"deckedout.card.tactical_approach": { "sounds": [ "card/tactical_approach" ] },
+	"deckedout.card.porkchop_power": { "sounds": [ "card/porkchop_power" ] },
+	
+	"deckedout.card.sneak": { "sounds": [ "card/sneak" ] },
+	"deckedout.card.stability": { "sounds": [ "card/stability" ] },
+	"deckedout.card.treasure_hunter": { "sounds": [ "card/treasure_hunter" ] },
+	"deckedout.card.ember_seeker": { "sounds": [ "card/ember_seeker" ] },
+	"deckedout.card.moment_of_clarity": { "sounds": [ "card/moment_of_clarity" ] },
+	
+	"deckedout.card.evasion": { "sounds": [ "card/evasion" ] },
+	"deckedout.card.tread_lightly": [ "sounds": [ "card/tread_lighly" ] },
+	
+	"deckedout.treasure.generic.spawn": { "sounds": [ "treasure/generic/spawn" ] },
+	"deckedout.treasure.artifact.spawn": { "sounds": [ "treasure/artifact/spawn" ] },
+	
+	"deckedout.clank.spawn": { "sounds": [ "clank/spawn" ] },
+	"deckedout.clank.block": { "sounds": [ "clank/block" ] },
+	"deckedout.level.generic.open": { "sounds": [ "level/generic/spawn" ] },
+	"deckedout.hazard.spawn": { 
+		"sounds": [
+			"hazard/spawn1",
+			"hazard/spawn2",
+			"hazard/spawn3"
+		]
+	}
+	"deckedout.hazard.block": { "sounds": [ "hazard/block" ] },
+}

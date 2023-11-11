@@ -5,6 +5,7 @@
 package com.fexl.deckedout;
 
 import com.fexl.deckedout.event.Events;
+import com.fexl.deckedout.event.EventTypes;
 
 import net.minecraft.world.InteractionResult;
 
@@ -26,7 +27,7 @@ public class Clank {
 	}
 	
 	public void addClank(int amount) {
-		InteractionResult result = events.CLANK_EVENT.invoker().interact(SpawnType.Clank.ADD_CLANK);
+		InteractionResult result = events.CLANK_EVENT.invoker().interact(EventTypes.Clank.ADD_CLANK);
 		if(!(result == InteractionResult.FAIL)) {
 			//Clank Block
 			if(clankBlock > 0) {
@@ -46,7 +47,7 @@ public class Clank {
 	}
 	
 	public void addClankBlock(int amount) {
-		InteractionResult result = events.CLANK_EVENT.invoker().interact(SpawnType.Clank.ADD_CLANK_BLOCK);
+		InteractionResult result = events.CLANK_EVENT.invoker().interact(EventTypes.Clank.ADD_CLANK_BLOCK);
 		if(!(result == InteractionResult.FAIL)) {
 			if(clankBlock + amount > maxClankBlock) {
 				clankBlock = maxClankBlock;

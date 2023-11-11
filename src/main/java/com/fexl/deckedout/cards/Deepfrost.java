@@ -12,10 +12,10 @@ public class Deepfrost extends Card {
 	public void actions() {
 		//Every staircase unlocked adds 6 Frost Embers up to level 4 (max 18)
 		if(doPlayer.getLevel() >= 3) {
-			ember.addEmbers(18);
+			this.addEmbers(18);
 		}
 		else {
-			ember.addEmbers(doPlayer.getLevel()*6);
+			this.addEmbers(doPlayer.getLevel()*6);
 		}
 	}
 }

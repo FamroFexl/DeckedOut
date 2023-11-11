@@ -1,0 +1,60 @@
+{
+	"parent": "item/generated",
+	"textures": {
+		"layer0": "item/iron_ingot"
+	},
+	
+	"overrides": [
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/stumble" },
+	
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/pay_to_win" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/tactical_appraoach" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/porkchop_power" },
+	
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/sneak" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/stability" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/treasure_hunter" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/ember_seeker" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/moment_of_clarity" },
+	
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/evasion" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/tread_lightly" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/frost_focus" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/loot_and_scoot" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/second_wind" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/beast_sense" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/bounding_strides" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/reckless_charge" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/sprint" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/nimble_looting" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/smash_and_grab" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/quickstep" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/suit_up" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/adrenaline_rush" },
+	
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/eerie_silence" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/dungeon_repairs" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/swagger" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/chill_step" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/speed_runner" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/eyes_on_the_prize" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/haste" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/cold_snap" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/silent_runner" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/fuzzy_bunny_slippers" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/deepfrost" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/card/brilliance" },
+		
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/key/level_2" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/key/level_3" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/key/level_4" },
+		
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/coin" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/frost_ember" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/crown" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/rusty_repair_kit" },
+		
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/frozen_shard" },
+		{ "predicate": { "custom_model_data": 1 }, "model": "item/victory_tome" }
+	]
+}

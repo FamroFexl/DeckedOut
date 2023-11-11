@@ -5,6 +5,7 @@
 package com.fexl.deckedout;
 
 import com.fexl.deckedout.event.Events;
+import com.fexl.deckedout.event.EventTypes;
 
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.level.block.Block;
@@ -28,7 +29,7 @@ public class Hazard {
 	 * Adds an amount of hazard if there is no {@link com.fexl.deckedout.Hazard#hazardBlock} left.
 	 */
 	public void addHazard(int amount) {
-		InteractionResult result = events.HAZARD_EVENT.invoker().interact(SpawnType.Hazard.ADD_HAZARD);
+		InteractionResult result = events.HAZARD_EVENT.invoker().interact(EventTypes.Hazard.ADD_HAZARD);
 		if(!(result == InteractionResult.FAIL)) {
 			//Hazard Block
 			if(hazardBlock > 0) { 
@@ -44,7 +45,7 @@ public class Hazard {
 	 * Used to block {@link com.fexl.deckedout.Hazard} when it occurs.
 	 */
 	public void addHazardBlock(int amount) {
-		InteractionResult result = events.HAZARD_EVENT.invoker().interact(SpawnType.Hazard.ADD_HAZARD_BLOCK);
+		InteractionResult result = events.HAZARD_EVENT.invoker().interact(EventTypes.Hazard.ADD_HAZARD_BLOCK);
 		if(!(result == InteractionResult.FAIL)) {
 			if(hazardBlock + amount > maxHazardBlock) {
 				hazardBlock = maxHazardBlock;

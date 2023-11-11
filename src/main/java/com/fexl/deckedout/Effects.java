@@ -35,7 +35,7 @@ public class Effects {
 	 * Targets an individual entity to receive a specific effect. This will most often be used to target the {@link com.fexl.deckedout.DOPlayer}
 	 */
 	public void addSpecificEffect(LivingEntity entity, MobEffect mobEffect, int duration, int amplifier) {
-		InteractionResult result = events.EFFECT_EVENT.invoker().interact(mobEffect, SpawnType.Effect.GENERAL);
+		InteractionResult result = events.EFFECT_EVENT.invoker().interact(mobEffect);
 		if(!(result == InteractionResult.FAIL)) {
 			entity.addEffect(new MobEffectInstance(mobEffect, duration, amplifier));
 		}

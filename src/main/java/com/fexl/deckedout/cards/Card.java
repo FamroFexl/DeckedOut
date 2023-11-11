@@ -8,10 +8,10 @@ import com.fexl.deckedout.Clank;
 import com.fexl.deckedout.DOPlayer;
 import com.fexl.deckedout.Effects;
 import com.fexl.deckedout.Hazard;
-import com.fexl.deckedout.SpawnType;
 import com.fexl.deckedout.event.Events;
 import com.fexl.deckedout.event.ScheduleEvent;
-import com.fexl.deckedout.treasure.Ember;
+import com.fexl.deckedout.event.EventTypes;
+import com.fexl.deckedout.treasure.FrostEmber;
 import com.fexl.deckedout.treasure.Treasure;
 
 import net.minecraft.world.InteractionResult;
@@ -31,7 +31,7 @@ public class Card {
 	public Clank clank;
 	public Hazard hazard;
 	public Treasure treasure;
-	public Ember ember;
+	public FrostEmber ember;
 	public DOPlayer doPlayer;
 	public ScheduleEvent schedEvent;
 	
@@ -81,7 +81,7 @@ public class Card {
 	
 	//Play the card
 	public final void play() {
-		InteractionResult result = events.CARD_EVENT.invoker().interact(this, SpawnType.Card.CARD_PLAYED);
+		InteractionResult result = events.CARD_EVENT.invoker().interact(this, EventTypes.Card.CARD_PLAYED);
 		if(!(result == InteractionResult.FAIL)) {
 			this.actions();
 		}
@@ -98,7 +98,7 @@ public class Card {
 		private Clank clank = null;
 		private Hazard hazard = null;
 		private Treasure treasure = null;
-		private Ember ember = null ;
+		private FrostEmber ember = null ;
 		private DOPlayer doPlayer = null;
 		private ScheduleEvent schedEvent = null;
 		
@@ -126,7 +126,7 @@ public class Card {
 			return this;
 		}
 		
-		public final CardBuilder setEmber(Ember ember) {
+		public final CardBuilder setEmber(FrostEmber ember) {
 			this.ember = ember;
 			return this;
 		}

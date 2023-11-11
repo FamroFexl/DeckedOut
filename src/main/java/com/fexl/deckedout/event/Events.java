@@ -1,6 +1,5 @@
 package com.fexl.deckedout.event;
 
-import com.fexl.deckedout.SpawnType;
 import com.fexl.deckedout.cards.Card;
 
 import net.fabricmc.fabric.api.event.Event;
@@ -40,9 +39,9 @@ public class Events {
 		return InteractionResult.PASS;
 	});
 	
-	public final Event<TreasureEvent> TREASURE_EVENT = EventFactory.createArrayBacked(TreasureEvent.class, callbacks -> (block, type) -> {
+	public final Event<TreasureEvent> TREASURE_EVENT = EventFactory.createArrayBacked(TreasureEvent.class, callbacks -> (block) -> {
 				for(TreasureEvent event: callbacks) {
-					InteractionResult result = event.interact(block, type);
+					InteractionResult result = event.interact(block);
 					if(result != InteractionResult.PASS) {
 						return result;
 					}
@@ -60,9 +59,9 @@ public class Events {
 		return InteractionResult.PASS;
 	});
 	
-	public final Event<EffectEvent> EFFECT_EVENT = EventFactory.createArrayBacked(EffectEvent.class, callbacks -> (effect, type) -> {
+	public final Event<EffectEvent> EFFECT_EVENT = EventFactory.createArrayBacked(EffectEvent.class, callbacks -> (effect) -> {
 		for(EffectEvent event: callbacks) {
-			InteractionResult result = event.interact(effect, type);
+			InteractionResult result = event.interact(effect);
 			if(result != InteractionResult.PASS) {
 				return result;
 			}
@@ -74,31 +73,31 @@ public class Events {
 	
 	@FunctionalInterface
 	public interface ClankEvent {
-		InteractionResult interact(SpawnType.Clank type);
+		InteractionResult interact(EventTypes.Clank type);
 	}
 	
 	//@FunctionalInterface
 	public interface CardEvent {
-		InteractionResult interact(Card card, SpawnType.Card type);
+		InteractionResult interact(Card card, EventTypes.Card type);
 	}
 	
 	@FunctionalInterface
 	public interface HazardEvent {
-		InteractionResult interact(SpawnType.Hazard type);
+		InteractionResult interact(EventTypes.Hazard type);
 	}
 	
 	@FunctionalInterface
 	public interface TreasureEvent {
-		InteractionResult interact(BlockPos block, SpawnType.Treasure type);
+		InteractionResult interact(BlockPos block);
 	}
 	
 	@FunctionalInterface
 	public interface LevelEvent {
-		InteractionResult interact(int level, SpawnType.Level type);
+		InteractionResult interact(int level, EventTypes.Level type);
 	}
 	
 	@FunctionalInterface
 	public interface EffectEvent {
-		InteractionResult interact(MobEffect effect, SpawnType.Effect type);
+		InteractionResult interact(MobEffect effect);
 	}
 }

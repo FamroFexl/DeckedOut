@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.fexl.deckedout.cards.Card;
 import com.fexl.deckedout.event.Events;
+import com.fexl.deckedout.event.EventTypes;
 import com.mojang.authlib.GameProfile;
 
 import net.minecraft.core.BlockPos;
@@ -35,10 +36,10 @@ public class DOPlayer extends User {
 		this.level = level;
 		
 		if(level > this.level) {
-			InteractionResult result = events.LEVEL_EVENT.invoker().interact(level, SpawnType.Level.PLAYER_LEVEL_LOWER);
+			InteractionResult result = events.LEVEL_EVENT.invoker().interact(level, EventTypes.Level.PLAYER_LEVEL_LOWER);
 		}
 		else if(this.level < level) {
-			InteractionResult result = events.LEVEL_EVENT.invoker().interact(level, SpawnType.Level.PLAYER_LEVEL_HIGHER);
+			InteractionResult result = events.LEVEL_EVENT.invoker().interact(level, EventTypes.Level.PLAYER_LEVEL_HIGHER);
 		}
 	}
 	

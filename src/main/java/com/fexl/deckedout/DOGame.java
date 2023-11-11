@@ -10,7 +10,7 @@ import com.fexl.deckedout.cards.Card;
 import com.fexl.deckedout.cards.Cards;
 import com.fexl.deckedout.event.Events;
 import com.fexl.deckedout.event.ScheduleEvent;
-import com.fexl.deckedout.treasure.Ember;
+import com.fexl.deckedout.treasure.FrostEmber;
 import com.fexl.deckedout.treasure.Treasure;
 
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerTickEvents;
@@ -43,7 +43,7 @@ public class DOGame {
 	public Treasure treasure;
 	
 	//Dungeon Embers
-	public Ember embers;
+	public FrostEmber embers;
 	
 	public ScheduleEvent scheduledEvents;
 	
@@ -69,7 +69,7 @@ public class DOGame {
 		clank = new Clank(events);
 		hazard = new Hazard(events);
 		treasure = new Treasure(events, minecraft);
-		embers = new Ember(events, minecraft);
+		embers = new FrostEmber(events, minecraft);
 		scheduledEvents = new ScheduleEvent(minecraft);
 		cards = new Cards(new Card.CardBuilder().setClank(clank).setEmber(embers).setDOPlayer(doPlayer).setEffects(effects).setHazard(hazard).setTreasure(treasure).setEvents(events).setSchedEvent(scheduledEvents));
 	}

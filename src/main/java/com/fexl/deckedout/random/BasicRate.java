@@ -7,8 +7,6 @@ package com.fexl.deckedout.random;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 
-import com.fexl.deckedout.treasure.Treasures;
-
 import net.minecraft.resources.ResourceLocation;
 
 /**
@@ -17,9 +15,9 @@ import net.minecraft.resources.ResourceLocation;
 public class BasicRate extends PercentageRate {
 	public static BasicRate STANDARD_TREASURE_RATE = new BasicRate(new LinkedHashMap<Integer, Object>() {
 		{ 
-			put(60, Treasures.TREASURES.get(new ResourceLocation("coin")));
-			put(25, Treasures.TREASURES.get(new ResourceLocation("key")));
-			put(15, Treasures.TREASURES.get(new ResourceLocation("crown")));
+			put(60, new ResourceLocation("coin"));
+			put(25, new ResourceLocation("key"));
+			put(15, new ResourceLocation("crown"));
 		}
 	});
 	

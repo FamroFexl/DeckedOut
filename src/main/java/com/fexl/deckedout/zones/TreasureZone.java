@@ -16,11 +16,6 @@ import net.minecraft.core.BlockPos;
  * Used to spawn treasure in the dungeon on a {@link com.fexl.deckedout.random.PercentageRate} basis
  */
 public class TreasureZone extends DOZone {
-	//Index is the level, value is the maximum amount of treasure spawnable on that level
-	public final ArrayList<Integer> maxTreasure = new ArrayList<Integer>();
-				
-	//Index is the level, value is the current amount of treasure spawnable on that level
-	public final ArrayList<Integer> currentTreasure = new ArrayList<Integer>();
 		
 	public TreasureZone(BlockPos blockPos1, BlockPos blockPos2, PercentageRate rate, int level) {
 		super(blockPos1, blockPos2);
@@ -28,21 +23,17 @@ public class TreasureZone extends DOZone {
 		this.level = level;
 	}
 	
-	public TreasureZone(BlockPos blockPos1, BlockPos blockPos2) {
+	public TreasureZone(BlockPos blockPos1, BlockPos blockPos2, int level) {
 		super(blockPos1, blockPos2);
 		this.rate = TreasureRate.STANDARD_RATE;
+		this.level = level;
 	}
 	
-	public TreasureZone(BlockPos blockPos) {
-		this(blockPos, blockPos);
+	public TreasureZone(BlockPos blockPos, int level) {
+		this(blockPos, blockPos, level);
 	}
 	
 	public void spawnTreasure() {
-		if(currentTreasure.get(this.level) == maxTreasure.get(this.level)) {
-			return;
-		}
-		currentTreasure.set(this.level, currentTreasure.get(this.level) + 1);
-		
 		//If the rate is uninitialized
 		if(this.rate == null) {
 			this.rate = TreasureRate.STANDARD_RATE;
