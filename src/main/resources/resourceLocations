@@ -1,0 +1,8 @@
+{
+	"namespace": "deckedout",
+	"sounds": {
+		"items.frost_ember": "Frost Ember Drop Sound",
+		"items.treasure": "Treasure Drop Sound",
+		"items.artifact": "Artifact Drop Sound",
+	}
+}

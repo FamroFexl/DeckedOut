@@ -3,7 +3,7 @@
 		"sounds": [
 		
 		]
-	}
+	},
 	"deckedout.card.stumble": { "sounds": [ "card/stumble" ] },
 	
 	"deckedout.card.pay_to_win": { "sounds": [ "card/pay_to_win" ] },
@@ -17,10 +17,11 @@
 	"deckedout.card.moment_of_clarity": { "sounds": [ "card/moment_of_clarity" ] },
 	
 	"deckedout.card.evasion": { "sounds": [ "card/evasion" ] },
-	"deckedout.card.tread_lightly": [ "sounds": [ "card/tread_lighly" ] },
+	"deckedout.card.tread_lightly": { "sounds": [ "card/tread_lighly" ] },
 	
-	"deckedout.treasure.generic.spawn": { "sounds": [ "treasure/generic/spawn" ] },
-	"deckedout.treasure.artifact.spawn": { "sounds": [ "treasure/artifact/spawn" ] },
+	"deckedout.item.treasure.spawn": { "sounds": [ "item/treasure/spawn" ] },
+	"deckedout.item.artifact.spawn": { "sounds": [ "item/artifact/spawn" ] },
+	"deckedout.item.frost_ember.spawn": { "sounds": [ "item/frost_ember/spawn" ] },
 	
 	"deckedout.clank.spawn": { "sounds": [ "clank/spawn" ] },
 	"deckedout.clank.block": { "sounds": [ "clank/block" ] },
@@ -31,6 +32,6 @@
 			"hazard/spawn2",
 			"hazard/spawn3"
 		]
-	}
-	"deckedout.hazard.block": { "sounds": [ "hazard/block" ] },
+	},
+	"deckedout.hazard.block": { "sounds": [ "hazard/block" ] }
 }
