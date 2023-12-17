@@ -10,6 +10,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Random;
 
+import com.fexl.deckedout.game.Artifact;
 import com.fexl.deckedout.game.Clank;
 import com.fexl.deckedout.game.DOPlayer;
 import com.fexl.deckedout.game.event.EventTypes;
@@ -51,26 +52,19 @@ public class GameDungeon {
 	public Minecraft minecraft;
 	public Clank clank;
 	public Events events;
-	
-	public ItemStack gameCompass;
-	public BlockPos artifactPos;
-	public DOZone randomArtifactZone;
-	public boolean artifactRetrieved = false;
+	public Artifact artifact;
 	
 	private ResourceLocation frostEmberSound = new ResourceLocation("deckedout", "items.frost_ember");
 	private ResourceLocation treasureSound = new ResourceLocation("deckedout", "items.treasure");
-	private ResourceLocation artifactSound = new ResourceLocation("deckedout", "items.artifact");
 	
-	public GameDungeon(DOPlayer doPlayer, Dungeon dungeon) {
+	public GameDungeon(DOPlayer doPlayer, Dungeon dungeon, Artifact artifact) {
 		this.doPlayer = doPlayer;
 		this.dungeon = dungeon;
-		
-		randomArtifactZone = this.randomLevelZone(doPlayer.getSelectedDOLevel(), dungeon.artifactZones);
-		artifactPos = randomArtifactZone.getRandValidZoneBlock();
+		this.artifact = artifact;
 	}
 	
 	public void spawnMobs(int level) {
-		ArrayList<DOZone> levelZones = this.getLevelZones(level, dungeon.mobZones);
+		ArrayList<DOZone> levelZones = Dungeon.getLevelZones(level, dungeon.mobZones);
 		
 		for(DOZone zone : levelZones) {
 			try {
@@ -90,79 +84,6 @@ public class GameDungeon {
 		}
 	}
 	
-	/**
-	 * Runs every tick (same as hopper minecarts) to check if the compass is in its block
-	 */
-	public boolean checkCompass() {
-		//Check for entities in the blockPos
-		List<ItemEntity> entities = doPlayer.level().getEntitiesOfClass(ItemEntity.class, new AABB(this.artifactPos, this.artifactPos), EntitySelector.ENTITY_STILL_ALIVE);
-		for(ItemEntity entity : entities) {
-			CompoundTag entityTag = entity.getItem().getTag();
-			if(entityTag.contains("tag") && (entityTag.getCompound("tag").contains(CompassItem.TAG_LODESTONE_POS) && entityTag.getCompound("tag").get(CompassItem.TAG_LODESTONE_POS) == this.artifactPos)) {
-				//doPlayer.level().playSound(null, artifact.blockPos, SoundEvent.createVariableRangeEvent(artifactSound), SoundSource.AMBIENT);
-				this.artifactRetrieved = true;
-				entity.kill();
-						
-				//Spawn the artifact
-				try {
-					//NBT Tag in the format of a "summon item" command with the "{Item:}" wrapper omitted
-					CompoundTag argument = (CompoundTagArgument.compoundTag()).parse(new StringReader(randomArtifactZone.rate.chance()));
-							
-					//Spawn artifact on its blockPos
-					new ItemEntity(minecraft.level, this.artifactPos.getX(), this.artifactPos.getY(), this.artifactPos.getZ(), ItemStack.of(argument));
-							
-					minecraft.level.playSound(null, this.artifactPos, SoundEvent.createVariableRangeEvent(artifactSound), SoundSource.valueOf(null));
-							
-				} catch (CommandSyntaxException e) {
-					//ERROR
-				}
-						
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	/**
-	 * Creates the game compass that guides the {@link com.fexl.deckedout.game.DOPlayer} to the {@link com.fexl.deckedout.game.treasure.Artifact}
-	 */
-	public ItemStack createCompass() {
-		String dimension = "";
-		
-		CompoundTag compassTag = new CompoundTag();
-		compassTag.putString(CompassItem.TAG_LODESTONE_DIMENSION, dimension);
-		compassTag.putBoolean(CompassItem.TAG_LODESTONE_TRACKED, true);
-		compassTag.put(CompassItem.TAG_LODESTONE_POS, NbtUtils.writeBlockPos(this.artifactPos));
-		
-		ItemStack compass = new ItemStack(Items.COMPASS, 1);
-		compass.setTag((CompoundTag)compass.getTag().put("tag", compassTag));
-		
-		return compass;
-	}
-	
-	public boolean checkClank() {
-		//Every game second (20 ticks), iterate through the clank zones and check if the player's position is in one.
-		//If they are, activate this method
-		
-		long tickRate = 20;
-		long pingRate = 2;
-		
-		for(DOZone zone : dungeon.clankZones) {
-			//If the player enters the clank zone, every time this method gets activated, randomly determine if the clank goes up
-			//Clank likelihood is determined by the number of valid blocks in the zone
-			/**
-			if((new Random()).nextInt(zone.getValidZoneBlocks().size()) == 0 && !zoneActive) {
-				clank.addClank(1);
-				//If the clank goes up, set zoneActive to true until the player leaves the zone, disabling clank increase
-				zoneActive = true;
-				//Effectively, even if a player spends a long time in a zone, they can only activate that zone once as long as they stay within it.
-				
-				return true;
-			}**/
-		}
-		return false;
-	}
-	
 	public boolean levelSpawnQueuedTreasure() {
 		if(!this.addTreasure(1)) {
 			return false;
@@ -175,7 +96,7 @@ public class GameDungeon {
 	
 	public boolean levelSpawnTreasure() {
 		//Get a random zone on the DOPlayer's level
-		DOZone randomTreasureZone = this.randomLevelZone(doPlayer.getCurrentDOLevel(), dungeon.treasureZones);
+		DOZone randomTreasureZone = Dungeon.randomLevelZone(doPlayer.getCurrentDOLevel(), dungeon.treasureZones);
 				
 		//Stores the treasure item
 		CompoundTag argument = null;
@@ -221,7 +142,7 @@ public class GameDungeon {
 		}
 		
 		//Get a random zone on the DOPlayer's level
-		DOZone randomTreasureZone = this.randomLevelZone(doPlayer.getCurrentDOLevel(), dungeon.treasureZones);
+		DOZone randomTreasureZone = dungeon.randomLevelZone(doPlayer.getCurrentDOLevel(), dungeon.treasureZones);
 		
 		BlockPos randPos = randomTreasureZone.getRandValidZoneBlock();
 		
@@ -261,23 +182,5 @@ public class GameDungeon {
 		currentEmbers.put(doPlayer.getCurrentDOLevel(), currentEmbers.get(doPlayer.getCurrentDOLevel()) + 1);
 		
 		return true;
-	}
-	
-	private <T extends DOZone> T randomLevelZone(int level, ArrayList<T> zones) {
-		ArrayList<T> levelZones = this.getLevelZones(level, zones);
-		
-		return levelZones.get((new Random()).nextInt(levelZones.size()));
-	}
-	
-	private <T extends DOZone> ArrayList<T> getLevelZones(int level, ArrayList<T> zones) {
-		ArrayList<T> levelZones = new ArrayList<T>();
-		
-		for(T zone : zones) {
-			if(zone.level == level) {
-				levelZones.add(zone);
-			}
-		}
-		
-		return levelZones;
 	}
 }

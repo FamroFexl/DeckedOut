@@ -21,7 +21,7 @@ public class FuzzyBunnySlippers extends Card {
 		
 		//Cards won't grant speed if the artifact has been obtained
 		events.EFFECT_EVENT.register((effect) -> {
-			if(effect == MobEffects.MOVEMENT_SPEED && gameDungeon.artifactRetrieved) {
+			if(effect == MobEffects.MOVEMENT_SPEED && artifact.getRetrieved()) {
 				return InteractionResult.FAIL;
 			}
 			return InteractionResult.PASS;

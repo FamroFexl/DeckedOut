@@ -4,6 +4,7 @@
 */
 package com.fexl.deckedout.game.cards;
 
+import com.fexl.deckedout.game.Artifact;
 import com.fexl.deckedout.game.Clank;
 import com.fexl.deckedout.game.DOPlayer;
 import com.fexl.deckedout.game.Effects;
@@ -33,6 +34,7 @@ public class Card {
 	protected DOPlayer doPlayer;
 	protected ScheduleEvent schedEvent;
 	protected Cards cards;
+	protected Artifact artifact;
 	
 	public static enum Rarity {
 		COMMON,
@@ -53,6 +55,7 @@ public class Card {
 		this.effects = builder.effects;
 		this.doPlayer = builder.doPlayer;
 		this.schedEvent = builder.schedEvent;
+		this.artifact = builder.artifact;
 	}
 	
 	protected void addClank(int amount) {
@@ -93,7 +96,6 @@ public class Card {
 	 * Actions the card will perform
 	 */
 	protected void actions() {
-		//A card can only be played every 6 seconds 
 	}
 	
 	public static class CardBuilder {
@@ -105,6 +107,7 @@ public class Card {
 		private Cards cards = null;
 		private DOPlayer doPlayer = null;
 		private ScheduleEvent schedEvent = null;
+		private Artifact artifact = null;
 		
 		public CardBuilder() {
 			
@@ -147,6 +150,11 @@ public class Card {
 		
 		public final CardBuilder setSchedEvent(ScheduleEvent schedEvent) {
 			this.schedEvent = schedEvent;
+			return this;
+		}
+		
+		public final CardBuilder setArtifact(Artifact artifact) {
+			this.artifact = artifact;
 			return this;
 		}
 		
