@@ -6,8 +6,11 @@ package com.fexl.deckedout.game.dungeon;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.Random;
 
 import com.fexl.deckedout.game.zones.DOZone;
+
+import net.minecraft.core.BlockPos;
 
 /**
  * Stores the game components of loadable dungeon maps for reference
@@ -16,6 +19,9 @@ public class Dungeon {
 	private int maxClank = 16;
 	private int maxClankBlock = -1;
 	private int maxHazardBlock = -1;
+	
+	//DOPlayer and Lackey starting position
+	public DOZone startingZone;
 	
 	//Set the tag for an ember
 	public String frostEmberItem = null;
@@ -26,19 +32,37 @@ public class Dungeon {
 	//Index is the level, value is the maximum amount of embers spawnable on that level
 	public LinkedHashMap<Integer, Integer> maxEmbers = new LinkedHashMap<Integer, Integer>();
 	
-	//List of TreasureZones
+	//Treasure spawn zones
 	public ArrayList<DOZone> treasureZones = new ArrayList<DOZone>();
 	
-	//List of ClankZones
+	//Clank detection zones
 	public ArrayList<DOZone> clankZones = new ArrayList<DOZone>();
 	
-	//List of SpawnZones
+	//Mob spawn zones
 	public ArrayList<DOZone> mobZones = new ArrayList<DOZone>();
 	
-	//List of ArtifactZones
+	//Artifact retrieval zones
 	public ArrayList<DOZone> artifactZones = new ArrayList<DOZone>();
 	
-	public Dungeon() {
+	//A list of hazards activated with commands
+	public ArrayList<String> hazardCommands = new ArrayList<String>();
+	
+	public static <T extends DOZone> T randomLevelZone(int level, ArrayList<T> zones) {
+		ArrayList<T> levelZones = getLevelZones(level, zones);
+		
+		return levelZones.get((new Random()).nextInt(levelZones.size()));
+	}
+	
+	public static <T extends DOZone> ArrayList<T> getLevelZones(int level, ArrayList<T> zones) {
+		ArrayList<T> levelZones = new ArrayList<T>();
+		
+		for(T zone : zones) {
+			if(zone.level == level) {
+				levelZones.add(zone);
+			}
+		}
+		
+		return levelZones;
 	}
 	
 	public void setMaxTreasure(int level, int maxTreasure) {
