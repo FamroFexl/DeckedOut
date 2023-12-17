@@ -2,6 +2,8 @@ package com.fexl.deckedout.game.cards;
 
 import java.util.Random;
 
+import com.fexl.deckedout.game.event.EventTypes;
+
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffects;
 
@@ -19,7 +21,7 @@ public class SilentRunner extends Card {
 		//Permanent once played
 		events.CLANK_EVENT.register((type) -> {
 			//If the remaining time on the player's speed buff is >= 15, block half a clank
-			if(doPlayer.getEffect(MobEffects.MOVEMENT_SPEED).getDuration() >= 15 && (new Random()).nextInt(2) == 1) {
+			if(type == EventTypes.Clank.ADD_CLANK && doPlayer.getEffect(MobEffects.MOVEMENT_SPEED).getDuration() >= 15 && (new Random()).nextInt(2) == 1) {
 				//Block the clank
 				return InteractionResult.FAIL;
 			}
