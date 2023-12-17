@@ -7,6 +7,7 @@ package com.fexl.deckedout.game;
 import com.fexl.deckedout.game.dungeon.Dungeon;
 import com.fexl.deckedout.game.event.EventTypes;
 import com.fexl.deckedout.game.event.Events;
+import com.fexl.deckedout.game.zones.DOZone;
 
 import net.minecraft.world.InteractionResult;
 
@@ -55,6 +56,29 @@ public class Clank {
 			
 			clankBlock += amount;
 		}
+	}
+	
+	public boolean checkClank() {
+		//Every game second (20 ticks), iterate through the clank zones and check if the player's position is in one.
+		//If they are, activate this method
+		
+		long tickRate = 20;
+		long pingRate = 2;
+		
+		for(DOZone zone : dungeon.clankZones) {
+			//If the player enters the clank zone, every time this method gets activated, randomly determine if the clank goes up
+			//Clank likelihood is determined by the number of valid blocks in the zone
+			/**
+			if((new Random()).nextInt(zone.getValidZoneBlocks().size()) == 0 && !zoneActive) {
+				clank.addClank(1);
+				//If the clank goes up, set zoneActive to true until the player leaves the zone, disabling clank increase
+				zoneActive = true;
+				//Effectively, even if a player spends a long time in a zone, they can only activate that zone once as long as they stay within it.
+				
+				return true;
+			}**/
+		}
+		return false;
 	}
 	
 	public int getClank() {
