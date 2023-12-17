@@ -5,6 +5,7 @@
 package com.fexl.deckedout.game;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import com.fexl.deckedout.game.cards.Card;
 import com.fexl.deckedout.game.cards.Cards;
@@ -53,6 +54,8 @@ public class DOGame {
 	
 	public Dungeon dungeon;
 	
+	public Artifact artifact;
+	
 	public DOGame(DOPlayer doPlayer, Minecraft minecraft) {
 		this.doPlayer = doPlayer;
 		this.minecraft = minecraft;
@@ -64,10 +67,10 @@ public class DOGame {
 	private void preInit() {
 		doPlayer.setCurrentDOLevel(1);
 		deck = doPlayer.getDeck();
+		
 		clank = new Clank(events, dungeon);
-		hazard = new Hazard(events, dungeon);
-		//treasure = new Treasure(events, minecraft);
-		//embers = new FrostEmber(events, minecraft);
+		hazard = new Hazard(events, dungeon, doPlayer);
+		
 		scheduledEvents = new ScheduleEvent(minecraft);
 		
 		//Hazard Schedule
@@ -77,10 +80,10 @@ public class DOGame {
 		scheduledEvents.addRepeatingEvent(()->{deck.getNextCard().play();}, ScheduleEvent.secToTick(30));
 		
 		//Artifact detection schedule
-		scheduledEvents.addRepeatingEvent(()->{gameDungeon.checkCompass();}, 1);
+		scheduledEvents.addRepeatingEvent(()->{artifact.checkCompass();}, 1);
 		
 		//Clank detection schedule
-		scheduledEvents.addRepeatingEvent(()->{/*Clank detection*/}, ScheduleEvent.secToTick(1));
+		scheduledEvents.addRepeatingEvent(()->{clank.checkClank();}, ScheduleEvent.secToTick(1));
 		
 		cards = new Cards(new Card.CardBuilder().setClank(clank).setDOPlayer(doPlayer).setEffects(effects).setCards(cards).setHazard(hazard).setEvents(events).setSchedEvent(scheduledEvents));
 	}
@@ -106,6 +109,11 @@ public class DOGame {
 		for(Card card : deck.getPreGameCards()) {
 			card.play();
 		}
+		
+		//Teleport the DOPlayer and Lackeys to the starting position
+		
+		//Spawn the starting mobs for floor 1
+		gameDungeon.spawnMobs(1);
 		
 		//Startup scheduled events
 		this.gameEvents();
