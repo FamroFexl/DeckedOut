@@ -83,7 +83,7 @@ public class Artifact {
 					//Spawn artifact on its blockPos
 					new ItemEntity(minecraft.level, this.artifactPos.getX(), this.artifactPos.getY(), this.artifactPos.getZ(), ItemStack.of(argument));
 							
-					minecraft.level.playSound(null, this.artifactPos, SoundEvent.createVariableRangeEvent(artifactSound), SoundSource.valueOf(null));
+					minecraft.level.playSound(null, this.artifactPos, SoundEvent.createVariableRangeEvent(artifactSound), SoundSource.MUSIC);
 							
 				} catch (CommandSyntaxException e) {
 					//ERROR
