@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.Random;
 
+import com.fexl.deckedout.game.HazardList;
 import com.fexl.deckedout.game.zones.DOZone;
 
 import net.minecraft.core.BlockPos;
@@ -32,6 +33,9 @@ public class Dungeon {
 	//Index is the level, value is the maximum amount of embers spawnable on that level
 	public LinkedHashMap<Integer, Integer> maxEmbers = new LinkedHashMap<Integer, Integer>();
 	
+	//A list of hazards activated with commands
+	public LinkedHashMap<String, HazardList> hazardCommands = new LinkedHashMap<String, HazardList>();
+	
 	//Treasure spawn zones
 	public ArrayList<DOZone> treasureZones = new ArrayList<DOZone>();
 	
@@ -43,9 +47,6 @@ public class Dungeon {
 	
 	//Artifact retrieval zones
 	public ArrayList<DOZone> artifactZones = new ArrayList<DOZone>();
-	
-	//A list of hazards activated with commands
-	public ArrayList<String> hazardCommands = new ArrayList<String>();
 	
 	public static <T extends DOZone> T randomLevelZone(int level, ArrayList<T> zones) {
 		ArrayList<T> levelZones = getLevelZones(level, zones);
